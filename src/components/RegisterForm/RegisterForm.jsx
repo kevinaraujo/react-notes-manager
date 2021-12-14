@@ -2,6 +2,18 @@ import React, { Component } from 'react'
 import './style.css'
 
 class RegisterForm extends Component {
+
+    constructor() {
+        super()
+
+        this.title = ''
+    }
+
+    handlerTitleChance(e) {
+        this.title = e.target.value
+        console.log(this.title)
+    }
+
     render() {
         return (
             <form className="register-form"> 
@@ -9,6 +21,8 @@ class RegisterForm extends Component {
                     type="text" 
                     placeholder="Title"
                     className="register-form-input"
+                    onChange={ this.handlerTitleChance.bind(this) }
+                    
                 />
                 <textarea 
                     rows={ 15 }
