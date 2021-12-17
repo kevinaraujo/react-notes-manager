@@ -4,13 +4,20 @@ import './style.css'
 
 class NotesList extends Component {
 
+    constructor(props) {
+        super(props)
+    }
+
     render() {
         return (    
             <ul className="notes-list">
-                { Array.of('Work', 'Work', 'Study').map((category, index) => {
+                { this.props.notes.map((note, index) => {
                     return (
                         <li className="notes-list-item" key={index} >
-                            <NoteCard/>
+                            <NoteCard 
+                                title={ note.title }
+                                text={ note.text }
+                            />
                         </li>
                     )
                 })}

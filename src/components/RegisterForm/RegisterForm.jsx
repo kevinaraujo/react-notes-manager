@@ -23,8 +23,6 @@ class RegisterForm extends Component {
         e.stopPropagation()
 
         this.props.createNote(this.title, this.text)
-        console.log('osk')
-        console.log(this.title, this.text);
     }
 
     render() {
