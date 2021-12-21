@@ -8,6 +8,7 @@ class RegisterForm extends Component {
 
         this.title = ''
         this.text = ''
+        this.category = ''
     }
 
     _handlerTitleChange(e) {
@@ -18,11 +19,15 @@ class RegisterForm extends Component {
         this.text = e.target.value
     }
 
+    _handleCategoryChange(e) {
+        this.category = e.target.value
+    }
+
     _createNote(e) {
         e.preventDefault()
         e.stopPropagation()
 
-        this.props.createNote(this.title, this.text)
+        this.props.createNote(this.title, this.text, this.category)
     }
 
     render() {
@@ -30,7 +35,20 @@ class RegisterForm extends Component {
             <form 
                 className="register-form"
                 onSubmit={ this._createNote.bind(this) }
-            > 
+            >   
+                <select 
+                    className="register-form-input"
+                    onChange={ this._handleCategoryChange.bind(this) }>
+                    <option>---</option>
+                    { 
+                        this.props.categories.map((category, index) => {
+                            return (
+                                <option value={ category }>{ category }</option>
+                            )
+                        })
+                    }
+                </select>
+
                 <input 
                     type="text" 
                     placeholder="Title"
