@@ -11,7 +11,8 @@ class App extends Component {
     super()
 
     this.state = {
-      notes: []
+      notes: [],
+      categories: []
     }
   }
   
@@ -31,13 +32,27 @@ class App extends Component {
     this.setState({ notes })
   }
 
+  addCategory(value) {
+    let newCategoriesArray = [
+      ...this.state.categories,
+      value
+    ]
+
+    this.setState({
+      ...this.state.notes,
+      categories: newCategoriesArray
+    })
+  }
 
   render() {
     return (
       <section className="content">
         <RegisterForm createNote={ this.createNote.bind(this) } />
         <main className="main-content">
-          <CategoryList/>
+          <CategoryList 
+            categories={ this.state.categories }
+            addCategory= { this.addCategory.bind(this) }
+          />
         </main>
         <NotesList 
           notes={ this.state.notes }

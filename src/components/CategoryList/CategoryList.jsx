@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
-
+import './style.css'
 class CategoryList extends Component {
+    _handler(e) {
+        if (e.key == 'Enter') {
+            const category = e.target.value
+            this.props.addCategory(category)
+        }
+    }
+
     render() {
         return (
-            <section>
-                <ul>
-                    <li>category</li>
-                    <li>category</li>
-                    <li>category</li>
-                    <li>category</li>
+            <section className="category-list">
+                <ul className="category-list-list">
+                    { this.props.categories.map((category, index) => { 
+                        return (
+                            <li key={ index }
+                            className="category-list-item">
+                                { category }
+                            </li>
+                        )
+                    })}
                 </ul>
-                <input type="text"/>
+                <input 
+                    type="text" 
+                    className="category-list-input"
+                    placeholder="Add Category"
+                    onKeyUp={ this._handler.bind(this) }/>
             </section>
         )
     }
