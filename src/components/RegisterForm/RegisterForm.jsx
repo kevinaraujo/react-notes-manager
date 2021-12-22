@@ -9,6 +9,15 @@ class RegisterForm extends Component {
         this.title = ''
         this.text = ''
         this.category = ''
+        this.state = { categories: [] }
+    }
+
+    componentDidMount() {
+        this.props.categories.subscribe(this._newCategories.bind(this))
+    }
+
+    _newCategories(categories) {
+        this.setState({ ...this.state, categories })
     }
 
     _handlerTitleChange(e) {
@@ -41,9 +50,9 @@ class RegisterForm extends Component {
                     onChange={ this._handleCategoryChange.bind(this) }>
                     <option>---</option>
                     { 
-                        this.props.categories.map((category, index) => {
+                        this.state.categories.map((category, index) => {
                             return (
-                                <option value={ category }>{ category }</option>
+                                <option key={ index }>{ category }</option>
                             )
                         })
                     }
