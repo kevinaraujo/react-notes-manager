@@ -8,6 +8,12 @@ class Categories {
         this._subscribed.push(func)
     }
 
+    unsubscribe(func) {
+        console.log(this._subscribed.length)
+        this._subscribed = this._subscribed.filter(f => f !== func)
+        console.log(this._subscribed.length)
+    }
+
     notify() {
         this._subscribed.forEach(func => {
             func(this.categories)
